@@ -202,7 +202,11 @@ class Johansen(object):
 
         nobs, m = self.x.shape
 
-        eigenvectors, eigenvalues = self.mle()
+        try:
+            eigenvectors, eigenvalues = self.mle()
+        except:
+            print "Unable to obtain possible cointegrating relations."
+            return None
 
         rejected_r_values = []
         for r in range(m):
