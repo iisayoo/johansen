@@ -23,9 +23,6 @@ class Johansen(object):
         :param k: The number of lags to use when regressing on the first
         difference of x.
 
-        :param trace: Whether to use the trace statistic or the max eigenvalue
-        statistic. If set to False, the latter is used.
-
         :param trace: Whether to use the trace or max eigenvalue statistic for
         the hypothesis testing. If False the latter is used.
 
