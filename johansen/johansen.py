@@ -27,8 +27,7 @@ class Johansen(object):
         statistic. If set to False, the latter is used.
 
         :param trace: Whether to use the trace or max eigenvalue statistic for
-        the hypothesis testing. If False the max eigenvalue statistic will be
-        used.
+        the hypothesis testing. If False the latter is used.
 
         :param model: Which of the five cases in Osterwald-Lenum 1992 (or
         MacKinnon 1996) to use.
@@ -79,7 +78,11 @@ class Johansen(object):
 
         Maximum likelihood estimation and reduced rank regression are used to
         obtain the cointegrating vectors and corresponding eigenvalues, as
-        outlined in Hamilton 1995.
+        outlined in Hamilton 1994.
+
+        :return: The possible cointegrating vectors, i.e. the eigenvectors
+        resulting from maximum likelihood estimation and reduced rank
+        regression, and the corresponding eigenvalues.
 
         """
 

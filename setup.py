@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
-setup(name='johannsen',
-      version='0.0.1',
+setup(name='johansen',
+      version='0.0.3',
       description='Python implementation of the Johansen test for cointegration',
       author='Isaiah Yoo',
       author_email='yoo.isaiah@gmail.com',
