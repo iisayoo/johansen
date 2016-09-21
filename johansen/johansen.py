@@ -36,8 +36,8 @@ class Johansen(object):
             but may have a constant term, and additionally if the cointegrating
             relations may have nonzero means.
             - If set to 2, case 1 will be used. This case should be used if
-            the input time series have no linear trends and the cointegrating
-            relations are not expected to have linear trends.
+            the input time series have linear trends but the cointegrating
+-           relations are not expected to have linear trends.
             - If set to 3, case 2* will be used. This case should be used if
             the input time series do not have quadratic trends, but they and
             the cointegrating relations may have linear trends.
@@ -98,13 +98,15 @@ class Johansen(object):
         x_diff = x_diff[self.k:]
         x_lag = x_lag[self.k:]
 
-        # Add 1s to x_diff_lags to include intercept in the regressions if
-        # self.model != 0.
+        # Include intercept in the regressions if self.model != 0.
         if self.model != 0:
-            x_diff_lags = np.append(
-                x_diff_lags,
-                np.ones((x_diff_lags.shape[0], 4)),
-                axis=1)
+            ones = np.ones((x_diff_lags.shape[0], 1))
+            x_diff_lags = np.append(x_diff_lags, ones, axis=1)
+
+        # Include time trend in the regression if self.model = 3 or 4.
+        if self.model in (3, 4):
+            times = np.asarray(range(x_diff_lags.shape[0])).reshape((-1, 1))
+            x_diff_lags = np.append(x_diff_lags, times, axis=1)
 
         # Residuals of the regressions of x_diff and x_lag on x_diff_lags.
         try:
