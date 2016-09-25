@@ -14,4 +14,4 @@ See examples folder for a jupyter notebook with example usage.
 
 NOTE:
 
-The cases when the chosen model (in the language of MacKinnon 1996) is 1\* or 3\* have not yet been fully implemented. They will be completed in the near future.
+The cases when the chosen model (in the language of MacKinnon 1996) is 1\* or 2\* have not yet been fully implemented. They will be completed in the near future.
