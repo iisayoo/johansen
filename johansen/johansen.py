@@ -57,7 +57,7 @@ class Johansen(object):
         self.model = model
         self.significance_level = significance_level
 
-        if trace == True:
+        if trace:
             key = "TRACE_{}".format(model)
         else:
             key = "MAX_EVAL_{}".format(model)
@@ -112,7 +112,7 @@ class Johansen(object):
         try:
             inverse = np.linalg.pinv(x_diff_lags)
         except:
-            print "Unable to take inverse of x_diff_lags."
+            print("Unable to take inverse of x_diff_lags.")
             return None
 
         u = x_diff - np.dot(x_diff_lags, np.dot(inverse, x_diff))
@@ -128,12 +128,12 @@ class Johansen(object):
         try:
             Svv_inv = np.linalg.inv(Svv)
         except:
-            print "Unable to take inverse of Svv."
+            print("Unable to take inverse of Svv.")
             return None
         try:
             Suu_inv = np.linalg.inv(Suu)
         except:
-            print "Unable to take inverse of Suu."
+            print("Unable to take inverse of Suu.")
             return None
 
         # Eigenvalues and eigenvectors of the product of covariances.
@@ -141,13 +141,13 @@ class Johansen(object):
         eigenvalues, eigenvectors = np.linalg.eig(cov_prod)
 
         # Normalize the eigenvectors using Cholesky decomposition.
-        evec_Svv_evec =  np.dot(eigenvectors.T, np.dot(Svv, eigenvectors))
+        evec_Svv_evec = np.dot(eigenvectors.T, np.dot(Svv, eigenvectors))
         cholesky_factor = np.linalg.cholesky(evec_Svv_evec)
         try:
             eigenvectors = np.dot(eigenvectors,
                                   np.linalg.inv(cholesky_factor.T))
         except:
-            print "Unable to take the inverse of the Cholesky factor."
+            print("Unable to take the inverse of the Cholesky factor.")
             return None
 
         # Ordering the eigenvalues and eigenvectors from largest to smallest.
@@ -178,13 +178,13 @@ class Johansen(object):
         nobs, m = self.x.shape
         t = nobs - self.k - 1
 
-        if self.trace == True:
+        if self.trace:
             m = len(eigenvalues)
             statistic = -t * np.sum(np.log(np.ones(m) - eigenvalues)[r:])
         else:
             statistic = -t * np.sum(np.log(1 - eigenvalues[r]))
 
-        critical_value = self.critical_values[m - r -1]
+        critical_value = self.critical_values[m - r - 1]
 
         if statistic > critical_value:
             return True
@@ -207,7 +207,7 @@ class Johansen(object):
         try:
             eigenvectors, eigenvalues = self.mle()
         except:
-            print "Unable to obtain possible cointegrating relations."
+            print("Unable to obtain possible cointegrating relations.")
             return None
 
         rejected_r_values = []
