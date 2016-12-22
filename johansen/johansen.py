@@ -37,7 +37,7 @@ class Johansen(object):
             relations may have nonzero means.
             - If set to 2, case 1 will be used. This case should be used if
             the input time series have linear trends but the cointegrating
--           relations are not expected to have linear trends.
+            relations are not expected to have linear trends.
             - If set to 3, case 2* will be used. This case should be used if
             the input time series do not have quadratic trends, but they and
             the cointegrating relations may have linear trends.
