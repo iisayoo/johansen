@@ -57,7 +57,7 @@ class Johansen(object):
         self.model = model
         self.significance_level = significance_level
 
-        if trace is True:
+        if trace:
             key = "TRACE_{}".format(model)
         else:
             key = "MAX_EVAL_{}".format(model)
@@ -178,7 +178,7 @@ class Johansen(object):
         nobs, m = self.x.shape
         t = nobs - self.k - 1
 
-        if self.trace is True:
+        if self.trace:
             m = len(eigenvalues)
             statistic = -t * np.sum(np.log(np.ones(m) - eigenvalues)[r:])
         else:
