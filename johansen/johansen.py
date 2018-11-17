@@ -1,7 +1,7 @@
 import numpy as np
 from statsmodels.tsa.tsatools import lagmat
 
-import critical_values
+from .critical_values import mapping
 
 
 class Johansen(object):
@@ -62,7 +62,7 @@ class Johansen(object):
         else:
             key = "MAX_EVAL_{}".format(model)
 
-        critical_values_str = critical_values.mapping[key]
+        critical_values_str = mapping[key]
 
         select_critical_values = np.array(
             critical_values_str.split(),
